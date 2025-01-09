@@ -6,8 +6,7 @@ name: Python application
 on:
   push:
     branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+
 
 permissions:
   contents: read
@@ -28,6 +27,20 @@ jobs:
         python -m pip install --upgrade pip
         pip install flake8 pytest
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-    - name: Print Directory
+    - name: Run python on file looking for file name
       run: |
         ls -ltr
+        
+    - name: Get changed folders
+      run: |
+        echo "Fetching changed directories..."
+        git fetch --depth=2 # Ensure we have the previous commit
+        CHANGED_FOLDERS=$(git diff --name-only HEAD^ HEAD | awk -F'/' '{print $2}' | sort -u)
+        echo "Changed folders:"
+        echo "$CHANGED_FOLDERS"
+        echo "CHANGED_FOLDERS=$CHANGED_FOLDERS" >> $GITHUB_ENV
+
+    - name: Use changed folders
+      run: |
+        echo "Folders that changed in this push under 'uploads':"
+        echo "$CHANGED_FOLDERS"
