@@ -44,7 +44,7 @@ jobs:
           if [[ "$DIR_NAME" == *obsidian_notes* ]]; then
             echo "$DIR_NAME/$OTHERDIR"
             cd "$DIR_NAME/$OTHERDIR" || exit 1
-            python3 exportMdFileToHtml.py index.md y y
+            python3 /home/runner/work/ObsidianToHtmlConverter/ObsidianToHtmlConverter/exportMdFileToHtml.py index.md y y
           fi
         done
 
