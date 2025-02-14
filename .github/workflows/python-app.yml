@@ -43,8 +43,9 @@ jobs:
           OTHERDIR=$(echo "$file" | cut -d'/' -f2)
           if [[ "$DIR_NAME" == *obsidian_notes* ]]; then
             cp "exportMdFileToHtml.py" "$DIR_NAME/$OTHERDIR/exportMdFileToHtml.py"
+            mkdir -p obsidian_htmls/$OTHERDIR/export_Index
             cd "$DIR_NAME/$OTHERDIR"
-            python3 exportMdFileToHtml.py Index.md y y obsidian_htmls/$OTHERDIR
+            python3 exportMdFileToHtml.py Index.md y y ../../obsidian_htmls/$OTHERDIR
             rm -r exportMdFileToHtml.py
           fi
         done
