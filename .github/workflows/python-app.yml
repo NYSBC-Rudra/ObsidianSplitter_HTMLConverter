@@ -48,6 +48,13 @@ jobs:
             cd "$DIR_NAME/$OTHERDIR"
             sudo python3 exportMdFileToHtml.py Index.md y y ../../obsidian_htmls/$OTHERDIR
             rm -r exportMdFileToHtml.py
+            cd ../..
           fi
         done
+        git config user.name github-actions
+        git config user.email github-actions@github.com
+        git add *
+        git commit -m "auto committing adding new html files"
+        git push
+        echo "Pushed changes to the repository."
 
