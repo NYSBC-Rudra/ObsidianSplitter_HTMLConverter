@@ -50,7 +50,7 @@ finish [[Readme]]
 - figure out which UIs or packages are mentioned in job applications
 
 - select a data platform for our database (to SQL query from)
-	mysql and sql
+	mysql and sql?
 
 library(tidyverse)
 
