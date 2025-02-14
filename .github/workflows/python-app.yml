@@ -47,7 +47,7 @@ jobs:
             ls -ltr
             cd "$DIR_NAME/$OTHERDIR" || exit 1
             ls -ltr
-            python3 /home/runner/work/ObsidianToHtmlConverter/ObsidianToHtmlConverter/exportMdFileToHtml.py index.md y y
+            python3 ../../exportMdFileToHtml.py index.md y y
           fi
         done
 
