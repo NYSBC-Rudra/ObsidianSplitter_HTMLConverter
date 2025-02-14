@@ -35,10 +35,9 @@ jobs:
       run: |
         echo "Fetching changed directories..."
         git fetch --depth=2 # Ensure we have the previous commit
-        CHANGED_FOLDERS=$(git diff --name-only HEAD^ HEAD | awk -F'/' '{print $2}' | sort -u)
+        CHANGED_FOLDERS=$(git diff --name-only HEAD^ HEAD | awk -F'/' '{print $0}' | sort -u)
         echo "Changed folders:"
         echo "$CHANGED_FOLDERS"
-        echo "CHANGED_FOLDERS=$CHANGED_FOLDERS" >> $GITHUB_ENV
 
     - name: Use changed folders
       run: |
