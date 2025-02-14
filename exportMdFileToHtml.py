@@ -12,7 +12,7 @@ from random import seed,random,randint
 
 
 
-if(len(sys.argv)!=2 and len(sys.argv)!=3 and len(sys.argv)!=4):
+if(len(sys.argv)!=2 and len(sys.argv)!=3 and len(sys.argv)!=4, len(sys.argv)!=5):
     print("Wrong number of arguments!\nUsage: python3 exportMdFileToHtml.py <filename.md> <[y/n](optional) y=default => creates a html-export in export vault> <[y/n](optional) y=default => download extrernal images locally>")
     quit()
 
@@ -27,17 +27,21 @@ if len(sys.argv) >= 3:
     if str(sys.argv[2]).upper() == "N":
         print("Exporting: " + str(mainFileToExport) + " to vault")
         exportToHtml = False
-    if len(sys.argv) == 4 and str(sys.argv[3]).upper() == "N":
+    if len(sys.argv) >= 4 and str(sys.argv[3]).upper() == "N":
         downloadImages = False
 else:
     print("Exporting: " + str(mainFileToExport) + " + creates a html-copy in vault")
+
 
 
 if(mainFileToExport == ""):
     print("File not found!\nRun this script from the root of obsidian vault\nUsage: python3 exportMdFileToHtml.py <filename.md> <[y/n](optional) y=default => creates a html-export in export vault>")
     quit()
 
-exportDir = os.path.expanduser('~/export_' + fileToFind.split('/')[-1].replace(".md",""))
+if sys.argv[4] == None:
+    exportDir = os.path.expanduser('~/export_' + fileToFind.split('/')[-1].replace(".md",""))
+exportDir = str(sys.argv[4]) +'/export_'+  fileToFind.split('/')[-1].replace(".md","")
+
 print("Path to export vault: " + str(exportDir) + "\n")
 
 if os.path.exists(exportDir) and os.path.isdir(exportDir):
