@@ -37,9 +37,10 @@ jobs:
         git fetch --depth=2 # Ensure we have the previous commit
         CHANGED_FOLDERS=$(git diff --name-only HEAD^ HEAD | awk -F'/' '{print $0}' | sort -u)
         echo "Changed folders:"
-        echo "$CHANGED_FOLDERS"
-
-    - name: Use changed folders
-      run: |
-        echo "Folders that changed in this push under 'uploads':"
-        echo "$CHANGED_FOLDERS"
+        for file in $CHANGED_FOLDERS; do
+          echo "processing file: $file"
+          if [[ "$file" == .github/* ]]; then
+            DIR_AFTER_GITHUB=$(echo "$file" | sed 's#.github/##' | cut -d'/' -f1)
+            echo "$DIR_AFTER_GITHUB"
+          fi
+        done
