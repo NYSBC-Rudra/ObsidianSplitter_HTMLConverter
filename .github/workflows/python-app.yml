@@ -39,14 +39,12 @@ jobs:
         echo "Changed folders:"
         for file in $CHANGED_FOLDERS; do
           echo "processing file: $file"
-          if [[ "$file" == .github/* ]]; then
-            DIR_AFTER_GITHUB=$(echo "$file" | sed 's#.github/##' | cut -d'/' -f1)
-            OTHERDIR=$(echo "$file" | awk -F'/' '{print $2}')
-            echo "$DIR_AFTER_GITHUB/$OTHERDIR"
-            if [[ "$DIR_AFTER_GITHUB" == *obsidian_notes* ]]; then
-              cd ".github/$DIR_AFTER_GITHUB/$OTHERDIR" || exit 1
-              python3 exportMdFileToHtml.py index.md y y
-            fi
+          DIR_NAME=$(echo "$file" | cut -d'/' -f1)
+          OTHERDIR=$(echo "$file" | cut -d'/' -f2)
+          if [[ "$DIR_NAME" == *obsidian_notes* ]]; then
+            echo "$DIR_NAME/$OTHERDIR"
+            cd "$DIR_NAME/$OTHERDIR" || exit 1
+            python3 exportMdFileToHtml.py index.md y y
           fi
         done
 
