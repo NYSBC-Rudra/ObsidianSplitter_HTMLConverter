@@ -34,8 +34,7 @@ output report
 
 ## steps:
 
-run program - 
-
+run program 
 opens UI
 	form for each transaction
 	
@@ -44,7 +43,10 @@ opens UI
 
 
 
+
 # TODO
+finish [[Readme]]
+
 - figure out which UIs or packages are mentioned in job applications
 - select a data platform for our database (to SQL query from)
 
