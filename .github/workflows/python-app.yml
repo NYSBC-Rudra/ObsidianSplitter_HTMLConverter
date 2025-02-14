@@ -42,13 +42,9 @@ jobs:
           DIR_NAME=$(echo "$file" | cut -d'/' -f1)
           OTHERDIR=$(echo "$file" | cut -d'/' -f2)
           if [[ "$DIR_NAME" == *obsidian_notes* ]]; then
-            echo "moving file to $DIR_NAME/$OTHERDIR"
             cp "exportMdFileToHtml.py" "$DIR_NAME/$OTHERDIR/exportMdFileToHtml.py"
             cd "$DIR_NAME/$OTHERDIR"
-            echo "now in"
-            pwd
-            ls
-            python3 exportMdFileToHtml.py index.md y y
+            python3 exportMdFileToHtml.py Index.md y y
             rm -r exportMdFileToHtml.py
           fi
         done
